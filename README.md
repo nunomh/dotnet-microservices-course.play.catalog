@@ -7,6 +7,12 @@ Software:
 - VS Code
 - .NET 5.0
 
-## Project Creation  
+### Project Creation  
 
 ``dotnet new webapi -n Play.Catalog.Service --framework net5.0``  
+
+### Project Build and Run
+
+inside project folder (Play.Catalog.Service)  
+``dotnet build``  
+``dotnet run``  

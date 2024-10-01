@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\nuno.henriques\\Documents\\Dev\\dotnet-microservices-course\\play.catalog\\src\\Play.Catalog.Service\\Play.Catalog.Service.csproj": {}
+    "c:\\Users\\nuno.henriques\\Documents\\Dev\\dotnet-microservices-course\\play.catalog\\src\\Play.Catalog.Service\\Play.Catalog.Service.csproj": {}
   },
   "projects": {
-    "C:\\Users\\nuno.henriques\\Documents\\Dev\\dotnet-microservices-course\\play.catalog\\src\\Play.Catalog.Service\\Play.Catalog.Service.csproj": {
+    "c:\\Users\\nuno.henriques\\Documents\\Dev\\dotnet-microservices-course\\play.catalog\\src\\Play.Catalog.Service\\Play.Catalog.Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\nuno.henriques\\Documents\\Dev\\dotnet-microservices-course\\play.catalog\\src\\Play.Catalog.Service\\Play.Catalog.Service.csproj",
+        "projectUniqueName": "c:\\Users\\nuno.henriques\\Documents\\Dev\\dotnet-microservices-course\\play.catalog\\src\\Play.Catalog.Service\\Play.Catalog.Service.csproj",
         "projectName": "Play.Catalog.Service",
-        "projectPath": "C:\\Users\\nuno.henriques\\Documents\\Dev\\dotnet-microservices-course\\play.catalog\\src\\Play.Catalog.Service\\Play.Catalog.Service.csproj",
+        "projectPath": "c:\\Users\\nuno.henriques\\Documents\\Dev\\dotnet-microservices-course\\play.catalog\\src\\Play.Catalog.Service\\Play.Catalog.Service.csproj",
         "packagesPath": "C:\\Users\\nuno.henriques\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\nuno.henriques\\Documents\\Dev\\dotnet-microservices-course\\play.catalog\\src\\Play.Catalog.Service\\obj\\",
+        "outputPath": "c:\\Users\\nuno.henriques\\Documents\\Dev\\dotnet-microservices-course\\play.catalog\\src\\Play.Catalog.Service\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\nuno.henriques\\AppData\\Roaming\\NuGet\\NuGet.Config",
