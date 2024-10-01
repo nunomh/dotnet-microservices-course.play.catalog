@@ -1,4 +1,5 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Play.Catalog.Service.Dtos
 {
@@ -11,14 +12,16 @@ namespace Play.Catalog.Service.Dtos
         );
 
     public record CreateItemDto(
-        string Name,
+        [Required] string Name, // This is the required field
+
         string Description,
-        decimal Price
+        [Range(0, 1000)] decimal Price // Price must be between 0 and 1000
+
         );
 
     public record UpdateItemDto(
-        string Name,
+        [Required] string Name,
         string Description,
-        decimal Price
+        [Range(0, 1000)] decimal Price
     );
 }

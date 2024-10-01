@@ -33,7 +33,90 @@ The REST API defines the operations exposed by the microservice. FI:
 A Data Transfer Object (DTOs) is an object that carries data between processes. FI:  
 - DTO is the payload return to the client {id=123, Name="Potion", Price=9}
 The DTO represents the contract between the microservice API and the 
+This is where you can define required fields or range of values for fields.  
+
 
 #### Controllers
 The controller is the entry point for incoming HTTP requests. FI:  
 - CatalogController.cs: handles HTTP requests to the Catalog REST API  
+
+
+#### Repository
+A  repository is a layer of abstraction between the controller and the data storage. FI:
+- Application Logic -> Items Repository -> Data Storage (Database)  
+If for instance, the database needs to change, the only  thing that needs to change is the repository. Not the entire application.  
+In this projects is represented by the Entities folder.  
+
+In the context of .NET API development, especially when working with web applications and services like ASP.NET Core, the terms "entities" and "models" are often used, and while they can sometimes overlap, they serve distinct purposes.
+
+### 1. **Entities**
+Entities typically represent **domain-level objects** that map directly to database tables. These are part of your data access layer and are used in object-relational mapping (ORM) frameworks like Entity Framework (EF). They contain the properties that correspond to the database columns and might also include relationships between entities.
+
+**Characteristics of Entities:**
+- Used by the data layer to interact with the database.
+- Contain properties that reflect the structure of the database table (e.g., primary keys, foreign keys).
+- May include annotations that help in database mapping (e.g., `Key`, `Required`, `ForeignKey`, etc.).
+- Entities often change if the database structure changes.
+- Focus on persistence and how data is stored in a database.
+
+**Example:**
+```csharp
+public class ProductEntity
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+
+    // Navigation property
+    public CategoryEntity Category { get; set; }
+}
+```
+
+### 2. **Models**
+Models typically refer to **DTOs (Data Transfer Objects)** or **view models**, and they are used to **transfer data** between different layers of the application or to shape data specifically for views in the presentation layer (e.g., in an MVC controller). Unlike entities, models don't usually map directly to database tables, and they might be a subset of or a combination of various entities.
+
+**Types of Models:**
+- **DTOs (Data Transfer Objects)**: Used to transfer data between layers or over the network in APIs. These are optimized for what the API or view requires rather than the database schema.
+- **View Models**: Used in the presentation layer to pass data from the controller to the view. These models are shaped specifically for the UI requirements.
+
+**Characteristics of Models:**
+- Do not directly represent database objects (though they may resemble them).
+- Contain only the data necessary for a particular operation (e.g., presenting data in a view, or handling API requests).
+- Can aggregate data from multiple entities or break down an entity into simpler, more focused structures.
+- Help in decoupling the database structure from the API or view structure.
+
+**Example (DTO):**
+```csharp
+public class ProductDto
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public string CategoryName { get; set; }
+}
+```
+
+**Example (View Model):**
+```csharp
+public class ProductViewModel
+{
+    public string Name { get; set; }
+    public string Category { get; set; }
+    public string Description { get; set; }
+}
+```
+
+### Key Differences
+
+| Aspect          | Entities                                  | Models                                  |
+|-----------------|-------------------------------------------|-----------------------------------------|
+| **Purpose**     | Represent database tables for persistence | Transfer data between layers or shape data for views |
+| **Location**    | Typically in the Data Access Layer (DAL)   | Typically in the Application or Presentation Layer |
+| **ORM Mapping** | Mapped to database tables (e.g., EF Core)  | Not directly mapped to the database     |
+| **Structure**   | Reflects the database schema               | Optimized for business logic or presentation needs |
+| **Dependency**  | Tightly coupled with database structure    | Loosely coupled with database, focused on API/UI needs |
+
+### When to Use Entities vs Models
+- **Entities** are ideal for interactions with the database, such as creating, reading, updating, and deleting (CRUD) operations.
+- **Models** are used when you need to **separate concerns** and transfer only the relevant data to the client (e.g., via an API) or present it in the UI.
+
+By maintaining this distinction, you can keep your application flexible and easy to maintain, especially if your database schema changes over time.
