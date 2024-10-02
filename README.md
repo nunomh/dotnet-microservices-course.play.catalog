@@ -19,6 +19,12 @@ inside project folder (Play.Catalog.Service)
 
 in case you have a ssl error: ``dotnet dev-certs https --trust``  
 
+
+### Docker
+
+To create a mongoDB image, run the command: ``docker run -d --rm --name mongoPlayTest -p 27017:27017 -v mongodbdata:/data/db mongo``  
+if mongo is not already installed, this will pull and install all the packages needed to create a mongoDB image and run that image.
+
 ### Theory Notes   
 
 #### Catalog REST API:  
@@ -49,15 +55,8 @@ In this projects is represented by the Entities folder.
 
 In the context of .NET API development, especially when working with web applications and services like ASP.NET Core, the terms "entities" and "models" are often used, and while they can sometimes overlap, they serve distinct purposes.
 
-### 1. **Entities**
+## 1. **Entities**
 Entities typically represent **domain-level objects** that map directly to database tables. These are part of your data access layer and are used in object-relational mapping (ORM) frameworks like Entity Framework (EF). They contain the properties that correspond to the database columns and might also include relationships between entities.
-
-**Characteristics of Entities:**
-- Used by the data layer to interact with the database.
-- Contain properties that reflect the structure of the database table (e.g., primary keys, foreign keys).
-- May include annotations that help in database mapping (e.g., `Key`, `Required`, `ForeignKey`, etc.).
-- Entities often change if the database structure changes.
-- Focus on persistence and how data is stored in a database.
 
 **Example:**
 ```csharp
@@ -72,18 +71,13 @@ public class ProductEntity
 }
 ```
 
-### 2. **Models**
+## 2. **Models**
 Models typically refer to **DTOs (Data Transfer Objects)** or **view models**, and they are used to **transfer data** between different layers of the application or to shape data specifically for views in the presentation layer (e.g., in an MVC controller). Unlike entities, models don't usually map directly to database tables, and they might be a subset of or a combination of various entities.
 
 **Types of Models:**
 - **DTOs (Data Transfer Objects)**: Used to transfer data between layers or over the network in APIs. These are optimized for what the API or view requires rather than the database schema.
 - **View Models**: Used in the presentation layer to pass data from the controller to the view. These models are shaped specifically for the UI requirements.
 
-**Characteristics of Models:**
-- Do not directly represent database objects (though they may resemble them).
-- Contain only the data necessary for a particular operation (e.g., presenting data in a view, or handling API requests).
-- Can aggregate data from multiple entities or break down an entity into simpler, more focused structures.
-- Help in decoupling the database structure from the API or view structure.
 
 **Example (DTO):**
 ```csharp
@@ -105,7 +99,7 @@ public class ProductViewModel
 }
 ```
 
-### Key Differences
+## Key Differences
 
 | Aspect          | Entities                                  | Models                                  |
 |-----------------|-------------------------------------------|-----------------------------------------|
@@ -115,8 +109,7 @@ public class ProductViewModel
 | **Structure**   | Reflects the database schema               | Optimized for business logic or presentation needs |
 | **Dependency**  | Tightly coupled with database structure    | Loosely coupled with database, focused on API/UI needs |
 
-### When to Use Entities vs Models
+## When to Use Entities vs Models
 - **Entities** are ideal for interactions with the database, such as creating, reading, updating, and deleting (CRUD) operations.
 - **Models** are used when you need to **separate concerns** and transfer only the relevant data to the client (e.g., via an API) or present it in the UI.
 
-By maintaining this distinction, you can keep your application flexible and easy to maintain, especially if your database schema changes over time.

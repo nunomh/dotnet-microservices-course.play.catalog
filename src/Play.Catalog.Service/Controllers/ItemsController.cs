@@ -19,7 +19,13 @@ namespace Play.Catalog.Service.Controllers
         //     new ItemDto(Guid.NewGuid(), "Antidote", "Cures poison", 7, DateTimeOffset.UtcNow),
         //     new ItemDto(Guid.NewGuid(), "Bronze sword", "Deals a small amount of damage", 20, DateTimeOffset.UtcNow),
         // };
-        private readonly ItemsRepository itemsRepository = new();
+        // private readonly ItemsRepository itemsRepository = new();
+        private readonly IItemsRepository itemsRepository;
+        public ItemsController(IItemsRepository itemsRepository)
+        {
+            this.itemsRepository = itemsRepository;
+        }
+
 
         [HttpGet]
         // public IEnumerable<ItemDto> Get() // simplest way, without database connection
@@ -99,7 +105,7 @@ namespace Play.Catalog.Service.Controllers
             existingItem.Description = updateItemDto.Description;
             existingItem.Price = updateItemDto.Price;
 
-            await itemsRepository.UpdateAsync(existingItem);
+            await itemsRepository.UpdateAsync(existingItem.Id);
 
             return NoContent();
         }
